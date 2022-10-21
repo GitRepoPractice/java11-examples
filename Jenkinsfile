@@ -20,6 +20,14 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            mail from: "devops@qt.com",
+                  to : "team@qt.com",
+                  subject: "Status of the pipeline ${currentBuild.fullDisplayName}",
+                  body: "${env.BUILD_URL} has a result ${currentBuild.result}" 
+        }
+    }
 }
 
 
